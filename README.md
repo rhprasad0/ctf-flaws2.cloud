@@ -63,7 +63,7 @@ This project uses a VS Code devcontainer with:
 ## Challenge Progress
 
 ### Attacker Path
-- [ ] Level 1
+- [x] Level 1
 - [ ] Level 2
 - [ ] Level 3
 

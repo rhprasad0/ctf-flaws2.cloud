@@ -15,8 +15,8 @@
       "command": "uvx",
       "args": ["awslabs.iam-mcp-server@latest"],
       "env": {
-        "AWS_PROFILE": "your-aws-profile",
-        "AWS_REGION": "us-east-1",
+        "AWS_PROFILE": "ctf",
+        "AWS_REGION": "us-west-2",
         "FASTMCP_LOG_LEVEL": "ERROR"
       }
     },
@@ -24,7 +24,7 @@
       "command": "uvx",
       "args": ["awslabs.ccapi-mcp-server@latest"],
       "env": {
-        "AWS_PROFILE": "",
+        "AWS_PROFILE": "ctf",
         "DEFAULT_TAGS": "enabled",
         "SECURITY_SCANNING": "enabled",
         "FASTMCP_LOG_LEVEL": "ERROR"
