@@ -1,0 +1,63 @@
+{
+  "name": "flaws2.cloud CTF (Hardened)",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+
+  // Security: Run as non-root user
+  "remoteUser": "ctf",
+  "containerUser": "ctf",
+
+  // Security: Drop all capabilities, add only essentials
+  "capAdd": ["NET_RAW"],
+  "capDrop": ["ALL"],
+
+  // Security: Prevent privilege escalation
+  "securityOpt": ["no-new-privileges:true"],
+  "privileged": false,
+
+  // Security: Resource limits
+  "hostRequirements": {
+    "cpus": 2,
+    "memory": "2gb"
+  },
+
+  // Mounts
+  "mounts": [
+    // AWS credentials (read-only)
+    "source=${localEnv:HOME}/.aws,target=/home/ctf/.aws,type=bind,readonly"
+  ],
+
+  // Working directory
+  "workspaceFolder": "/home/ctf/ctf",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/home/ctf/ctf,type=bind,consistency=cached",
+
+  // Environment hardening
+  "containerEnv": {
+    "HISTFILE": "/dev/null",
+    "HISTSIZE": "0",
+    "PIP_USER": "1",
+    "PIP_NO_CACHE_DIR": "1",
+    // Pass through Anthropic API key for Claude CLI
+    "ANTHROPIC_API_KEY": "${localEnv:ANTHROPIC_API_KEY}"
+  },
+
+  // VSCode extensions for CTF work
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "redhat.vscode-yaml",
+        "ms-azuretools.vscode-docker"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "files.trimTrailingWhitespace": true
+      }
+    }
+  },
+
+  // Post-create setup
+  "postCreateCommand": "echo 'Container ready for flaws2.cloud CTF'"
+}

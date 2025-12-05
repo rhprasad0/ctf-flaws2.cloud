@@ -1,0 +1,32 @@
+# Security: Prevent sensitive files from being included in build context
+
+# Git
+.git
+.gitignore
+
+# Environment and secrets
+.env
+.env.*
+*.pem
+*.key
+*.crt
+*credentials*
+*secret*
+
+# AWS
+.aws/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs and temp
+*.log
+tmp/
+temp/
