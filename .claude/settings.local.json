@@ -1,0 +1,6 @@
+{
+  "enabledMcpjsonServers": [
+    "awslabs.aws-api-mcp-server",
+    "fetch"
+  ]
+}

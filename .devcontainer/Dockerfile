@@ -26,6 +26,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     vim-tiny \
     sudo \
+    gnupg \
     # AWS tools for flaws2.cloud
     awscli \
     # Network tools
@@ -51,8 +52,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Install Claude CLI globally
-RUN npm install -g @anthropic-ai/claude-code
+# Install Claude Code via npm
+RUN npm install -g @anthropic-ai/claude-code@latest
 
 # Install CloudMapper with Python 3.13 compatible dependencies
 # Note: pyjq has Python 3.13 issues, using jq binary + python-jq alternative
@@ -89,10 +90,14 @@ RUN echo "* hard core 0" >> /etc/security/limits.conf \
 USER ${USER_NAME}
 WORKDIR /home/${USER_NAME}
 
+# Install uv (includes uvx) for AWS MCP server
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+
 # Security: Harden bash profile
 RUN echo 'umask 077' >> ~/.bashrc \
     && echo 'unset HISTFILE' >> ~/.bashrc \
     && echo 'export HISTSIZE=0' >> ~/.bashrc \
+    && echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc \
     && mkdir -p ~/.aws
 
 CMD ["/bin/bash"]

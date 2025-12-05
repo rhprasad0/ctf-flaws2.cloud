@@ -23,11 +23,8 @@
     "memory": "2gb"
   },
 
-  // Mounts
-  "mounts": [
-    // AWS credentials (read-only)
-    "source=${localEnv:HOME}/.aws,target=/home/ctf/.aws,type=bind,readonly"
-  ],
+  // Mounts (no AWS credentials - configure inside container)
+  "mounts": [],
 
   // Working directory
   "workspaceFolder": "/home/ctf/ctf",
