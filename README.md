@@ -68,9 +68,7 @@ This project uses a VS Code devcontainer with:
 - [x] Level 3 ✅ **COMPLETE!**
 
 ### Defender Path
-- [ ] Level 1
-- [ ] Level 2
-- [ ] Level 3
+*Skipped*
 
 ## Resources
 
