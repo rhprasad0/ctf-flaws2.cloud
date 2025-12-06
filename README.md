@@ -64,7 +64,7 @@ This project uses a VS Code devcontainer with:
 
 ### Attacker Path
 - [x] Level 1
-- [ ] Level 2
+- [x] Level 2
 - [ ] Level 3
 
 ### Defender Path
